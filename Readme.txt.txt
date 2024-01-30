@@ -1,0 +1,1 @@
+This game will not be officially published, it is simply a learning tool for myself.
