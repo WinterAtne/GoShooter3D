@@ -2,4 +2,4 @@ This game will not be officially published, it is simply a learning tool for mys
 
 1) Impliment a basic 3D model
 2) Create a simple shooting mechanic
-3) Create a basic movement mechanic
+3) Create a basic movement mechanic (Complete)
