@@ -1,1 +1,5 @@
-This game will not be officially published, it is simply a learning tool for myself.
+This game will not be officially published, it is simply a learning tool for myself. I have three goals:
+
+1) Impliment a basic 3D model
+2) Create a simple shooting mechanic
+3) Create a basic movement mechanic
