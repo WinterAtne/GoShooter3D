@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://gmqnat7vxxky"]
+
+[ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_xb6be"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_6wn1a"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_6p81e"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hrrsu"]
+emission_enabled = true
+emission = Color(0.839216, 0, 0, 1)
+emission_energy_multiplier = 2.08
+
+[node name="Bullet" type="RigidBody3D"]
+script = ExtResource("1_xb6be")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+shape = SubResource("SphereShape3D_6wn1a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0, 0)
+mesh = SubResource("SphereMesh_6p81e")
+surface_material_override/0 = SubResource("StandardMaterial3D_hrrsu")

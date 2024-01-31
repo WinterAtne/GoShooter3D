@@ -9,6 +9,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var camera = $Camera3D
 
+@onready var bullet = load("res://Scenes/Bullet.tscn")
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -17,6 +19,7 @@ func _physics_process(delta):
 	velocity.y += -gravity * delta
 	get_move_input(delta)
 	move_and_slide()
+	shoot()
 	
 	pass
 
@@ -41,3 +44,11 @@ func _unhandled_input(event):
 		camera.rotation.x -= event.relative.y * mouse_sensitivity
 		camera.rotation_degrees.x = clamp(camera.rotation_degrees.x, -90.0, 90.0)
 		rotation.y -= event.relative.x * mouse_sensitivity
+
+func shoot():
+	if Input.is_action_just_pressed("shoot"):
+		var instance = bullet.instantiate()
+		instance.position = camera.global_position + Vector3(0, 0, -1).rotated(Vector3.UP, camera.global_rotation.y)
+		instance.transform.basis = camera.global_transform.basis.rotated(Vector3.UP, PI)
+		get_parent().add_child(instance)
+	
