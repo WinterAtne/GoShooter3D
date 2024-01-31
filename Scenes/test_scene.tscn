@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://be1mdechdqvr3"]
+[gd_scene load_steps=8 format=3 uid="uid://be1mdechdqvr3"]
 
 [ext_resource type="PackedScene" uid="uid://yuhxkxsf6o0u" path="res://Scenes/player.tscn" id="1_kfdxe"]
 [ext_resource type="PackedScene" uid="uid://hho36kwcndh4" path="res://Scenes/Damageable.tscn" id="2_wtsc7"]
@@ -10,6 +10,11 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_umr16"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ebe6t"]
+
+[sub_resource type="Environment" id="Environment_4qcjp"]
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0225
 
 [node name="Test_Scene" type="Node3D"]
 
@@ -36,3 +41,6 @@ shape = SubResource("BoxShape3D_umr16")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Damageable"]
 mesh = SubResource("BoxMesh_ebe6t")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4qcjp")
