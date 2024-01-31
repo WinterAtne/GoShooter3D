@@ -8,8 +8,12 @@ extends CharacterBody3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var camera = $Camera3D
+@onready var anim_tree = $AnimationTree
 
 @onready var bullet = load("res://Scenes/Bullet.tscn")
+
+var moving = false
+var was_moving = false
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
@@ -21,6 +25,14 @@ func _physics_process(delta):
 	move_and_slide()
 	shoot()
 	
+	if velocity.x != 0:
+		moving = true
+	
+	if moving != was_moving:
+		anim_tree.set("parameters/conditions/moving", moving)
+		anim_tree.set("parameters/conditions/notmoving", !moving)
+	
+	was_moving = moving
 	pass
 
 func get_move_input(delta):

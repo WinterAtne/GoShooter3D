@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://be1mdechdqvr3"]
+
+[ext_resource type="PackedScene" uid="uid://b3ak1jp8cyhjt" path="res://character.tscn" id="2_mx572"]
+[ext_resource type="PackedScene" uid="uid://hho36kwcndh4" path="res://Scenes/Damageable.tscn" id="2_wtsc7"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_6b3r8"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6kj0h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_umr16"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ebe6t"]
+
+[sub_resource type="Environment" id="Environment_4qcjp"]
+glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0225
+
+[node name="Test_Scene" type="Node3D"]
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0)
+mesh = SubResource("BoxMesh_6b3r8")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D"]
+shape = SubResource("BoxShape3D_6kj0h")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.5, -3.78552e-08, 0.866025, -0.866025, -2.18557e-08, 0.5, 0, -1, -4.37114e-08, 0, 10.7087, 0)
+
+[node name="Damageable" parent="." instance=ExtResource("2_wtsc7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Damageable"]
+shape = SubResource("BoxShape3D_umr16")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Damageable"]
+mesh = SubResource("BoxMesh_ebe6t")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4qcjp")
+
+[node name="character" parent="." instance=ExtResource("2_mx572")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 10)
